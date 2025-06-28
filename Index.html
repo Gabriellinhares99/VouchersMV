@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vouchers V.M</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            background-color: #f9f8f6;
+            color: #5e5047;
+        }
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #f9f8f6;
+        }
+        header h1 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 48px;
+            margin: 10px 0;
+        }
+        header p {
+            font-size: 18px;
+            letter-spacing: 2px;
+            color: #888;
+        }
+        .contador {
+            background-color: #b8a89b;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .contador h2 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .tempo {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .tempo div {
+            background: white;
+            color: #5e5047;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 60px;
+        }
+        .presentes {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .presente {
+            background: #e5ded7;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .presente h3 {
+            margin-top: 0;
+        }
+        .btn {
+            background-color: #5e5047;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Georgia', serif;
+        }
+        @keyframes cair {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <p>SAVE THE DATE</p>
+    <h1>Marcelo + Viviany</h1>
+    <p>12 . 07 . 2025</p>
+</header>
+
+<section class="contador">
+    <h2>Contagem Regressiva</h2>
+    <div class="tempo">
+        <div><span id="dias">0</span><br>DIAS</div>
+        <div><span id="horas">0</span><br>HORAS</div>
+        <div><span id="minutos">0</span><br>MIN</div>
+        <div><span id="segundos">0</span><br>SEG</div>
+    </div>
+</section>
+
+<section class="presentes">
+    <h2 style="text-align:center; font-family: 'Brush Script MT', cursive;">Vouchers para lua de mel</h2>
+    <h2 style="text-align:center; font-family: 'Brush Script MT', cursive;">Fernando de Noronha</h2>
+ 
+
+
+    <div class="presente">
+        <h3>Ilha Tour</h3>
+        <p>R$ 200,00</p>
+        <button class="btn" onclick="abrirModal('ilha-tour')">Presentear</button>
+    </div>
+
+    <div class="presente">
+        <h3>Passeio de Barco</h3>
+        <p>R$ 250,00</p>
+        <button class="btn" onclick="abrirModal('passeio-barco')">Presentear</button>
+    </div>
+
+     <div class="presente">
+        <h3>Passeio de Buggy</h3>
+        <p>R$ 150,00</p>
+        <button class="btn" onclick="abrirModal('Passeio de buggy')">Presentear</button>
+    </div>
+
+     <div class="presente">
+        <h3>Pôr do Sol no Boldró</h3>
+        <p>R$ 200,00</p>
+        <button class="btn" onclick="abrirModal('Pôr do Sol no Boldró')">Presentear</button>
+    </div>
+
+        <div class="presente">
+        <h3>Mergulho com Cilindro</h3>
+        <p>R$ 300,00</p>
+        <button class="btn" onclick="abrirModal('Mergulho com Cilindro')">Presentear</button>
+    </div>
+
+        <div class="presente">
+        <h3>Praia do Sancho</h3>
+        <p>R$ 150,00</p>
+        <button class="btn" onclick="abrirModal('Praia do Sancho')">Presentear</button>
+    </div>
+
+      <div class="presente">
+        <h3>Projeto Tamar</h3>
+        <p>R$ 200,00</p>
+        <button class="btn" onclick="abrirModal('projeto-tamar')">Presentear</button>
+    </div>
+
+    <div class="presente">
+        <h3>Trilha Costa dos Mirantes</h3>
+        <p>R$ 250,00</p>
+        <button class="btn" onclick="abrirModal('Trilha Costa dos Mirantes')">Presentear</button>
+    </div>
+</section>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="fecharModal()">&times;</span>
+        <h3>Dados para o Presente</h3>
+        <p>Chave PIX: <strong>Marcelobraz26@gmail.com</strong></p>
+        <img src="qrcode.jpg.jpg" alt="QR Code PIX" style="width:200px; margin: 20px 0;">
+
+        <h4>Deixe uma mensagem para os noivos:</h4>
+        <input type="text" id="nome" placeholder="Seu nome">
+        <textarea id="mensagem" placeholder="Sua mensagem..."></textarea>
+
+        <button class="btn" onclick="enviarPresente()">Confirmar Presente</button>
+    </div>
+</div>
+
+<script>
+    // Contador regressivo
+    const dataCasamento = new Date("July 12, 2025 00:00:00").getTime();
+    const diasEl = document.getElementById("dias");
+    const horasEl = document.getElementById("horas");
+    const minutosEl = document.getElementById("minutos");
+    const segundosEl = document.getElementById("segundos");
+
+    setInterval(() => {
+        const agora = new Date().getTime();
+        const distancia = dataCasamento - agora;
+
+        const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+        diasEl.innerText = dias;
+        horasEl.innerText = horas;
+        minutosEl.innerText = minutos;
+        segundosEl.innerText = segundos;
+    }, 1000);
+
+    let presenteSelecionado = '';
+
+    function abrirModal(presente) {
+        presenteSelecionado = presente;
+        document.getElementById("modal").style.display = "block";
+    }
+
+    function fecharModal() {
+        document.getElementById("modal").style.display = "none";
+    }
+
+    function enviarPresente() {
+        const nome = document.getElementById("nome").value;
+        const mensagem = document.getElementById("mensagem").value;
+
+        if (nome && mensagem) {
+            fecharModal();
+            confete();
+            alert(`Obrigado, ${nome}! Sua mensagem: "${mensagem}" foi enviada com o presente: ${presenteSelecionado}`);
+            document.getElementById("nome").value = '';
+            document.getElementById("mensagem").value = '';
+        } else {
+            alert("Por favor, preencha seu nome e a mensagem.");
+        }
+    }
+
+    function confete() {
+        for (let i = 0; i < 30; i++) {
+            const confete = document.createElement('div');
+            confete.style.position = 'fixed';
+            confete.style.top = '0px';
+            confete.style.left = Math.random() * window.innerWidth + 'px';
+            confete.style.width = '10px';
+            confete.style.height = '10px';
+            confete.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            confete.style.opacity = '0.7';
+            confete.style.borderRadius = '50%';
+            confete.style.animation = 'cair 3s linear forwards';
+            document.body.appendChild(confete);
+
+            setTimeout(() => confete.remove(), 3000);
+        }
+    }
+</script>
+
+</body>
+</html>
